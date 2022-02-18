@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:samaki_app/Before/SignIn.dart';
 
 
 
@@ -10,6 +13,21 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() async {
+    Timer(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute( builder: (context) => const SignIn()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
