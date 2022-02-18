@@ -53,7 +53,7 @@ class home1 extends StatelessWidget {
                 ),
                 const Text(
                   "Samaki App",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35,
                   fontFamily: 'Ubuntu'),
                 )
               ],

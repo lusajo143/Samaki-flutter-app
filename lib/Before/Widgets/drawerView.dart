@@ -18,7 +18,10 @@ class _drawerViewState extends State<drawerView> {
           width: double.infinity,
           height: 200,
           child: Container(
+            alignment: Alignment.bottomLeft,
+            height: double.infinity,
             decoration: BoxDecoration(
+              color: Colors.green,
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),
@@ -28,6 +31,14 @@ class _drawerViewState extends State<drawerView> {
                 )
               ]
             ),
+            child: Container(
+              child: Text("Samaki app",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),),
+              padding: EdgeInsets.all(20),
+            )
           ),
         ),
         Expanded(
@@ -37,8 +48,11 @@ class _drawerViewState extends State<drawerView> {
                 Column(
                   children: const [
                     ListTile(
-                      leading: Icon(Icons.home),
-                      title: Text("Nyumbani"),
+                      leading: Icon(Icons.home, color: Colors.black,size: 30,),
+                      title: Text("Nyumbani",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),),
                       dense: true,
                     ),
                     Divider()
@@ -51,8 +65,9 @@ class _drawerViewState extends State<drawerView> {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
                       },
                       child: ListTile(
-                        leading: SvgPicture.asset("assets/add.svg", semanticsLabel: "account",),
-                        title: const Text("Jisajili"),
+                        leading: SvgPicture.asset("assets/add.svg", semanticsLabel: "account", color: const Color.fromRGBO(
+                            83, 83, 83, 1.0),),
+                        title: const Text("Jisajili",),
                         dense: true,
                       ),
                     ),
@@ -64,7 +79,8 @@ class _drawerViewState extends State<drawerView> {
                     InkWell(
                       onTap: () {},
                       child: ListTile(
-                        leading: SvgPicture.asset("assets/signin.svg", semanticsLabel: "signin",),
+                        leading: SvgPicture.asset("assets/signin.svg", semanticsLabel: "signin", color: const Color.fromRGBO(
+                            83, 83, 83, 1.0),),
                         title: const Text("Ingia"),
                         dense: true,
                       ),
