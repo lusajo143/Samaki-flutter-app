@@ -60,28 +60,26 @@ class home1 extends StatelessWidget {
             ),
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
           ),
-          Container(
-            child: const TextField(
-              decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.fromLTRB(20, 10, 10, 20),
-                  hintText: "Tafuta",
-                  focusColor: Color.fromRGBO(238, 238, 238, 100),
-                  hintStyle: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(238, 238, 238, 100),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromRGBO(0, 0, 0, 100),
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  fillColor: Color.fromRGBO(238, 238, 238, 100),
-                  filled: true),
-            ),
+          const TextField(
+            decoration: InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.fromLTRB(20, 10, 10, 20),
+                hintText: "Tafuta",
+                focusColor: Color.fromRGBO(238, 238, 238, 100),
+                hintStyle: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.grey),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(238, 238, 238, 100),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(30))),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(0, 0, 0, 100),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(30))),
+                fillColor: Color.fromRGBO(238, 238, 238, 100),
+                filled: true),
           ),
           Container(
             margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
