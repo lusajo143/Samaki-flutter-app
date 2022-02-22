@@ -81,9 +81,10 @@ class home1 extends StatelessWidget {
                 )
               ]
             ),
-            child: const TextField(
+            child: TextField(
                 decoration: InputDecoration(
                   hintText: "Tafuta",
+                  hintStyle: Theme.of(context).textTheme.bodyText1,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),

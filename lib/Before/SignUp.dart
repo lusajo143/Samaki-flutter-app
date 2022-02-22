@@ -44,7 +44,8 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   child: const Text(
                     "Back",
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(fontSize: 20, color: Colors.black,
+                    fontFamily: 'Ubuntu'),
                   ),
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 )
@@ -57,35 +58,38 @@ class _SignUpState extends State<SignUp> {
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: const Text(
+                  child: Text(
                     "Jisajili",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-                  child: const Text(
+                  child: Text(
                     "Tafadhali jaza taarifa zako ili kuendelea.",
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),
                 const SizedBox(
                   height: 25,
                 ),
-                const TextField(
+                 TextField(
                   decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Color.fromRGBO(86, 86, 86, 100),
                     )),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Colors.black,
                     )),
-                    labelStyle: TextStyle(color: Colors.black),
-                    fillColor: Color.fromRGBO(238, 238, 238, 0.5),
+                    labelStyle: const TextStyle(color: Colors.black,),
+                    hintStyle: Theme.of(context).textTheme.bodyText1,
+                    fillColor: const Color.fromRGBO(238, 238, 238, 0.5),
                     hintText: "e.g Jon Doe",
-                    label: Text("Jina lako"),
+                    label: Text("Jina lako",
+                    style: Theme.of(context).textTheme.bodyText1,),
                     filled: true,
                   ),
                   keyboardType: TextInputType.text,
@@ -93,20 +97,22 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 25,
                 ),
-                const TextField(
+                TextField(
                   decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
+                    enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Color.fromRGBO(86, 86, 86, 100),
                     )),
-                    focusedBorder: OutlineInputBorder(
+                    focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                       color: Colors.black,
                     )),
-                    labelStyle: TextStyle(color: Colors.black),
-                    fillColor: Color.fromRGBO(238, 238, 238, 0.5),
+                    labelStyle: const TextStyle(color: Colors.black),
+                    fillColor: const Color.fromRGBO(238, 238, 238, 0.5),
                     hintText: "e.g +255744851335",
-                    label: Text("Namba ya simu"),
+                    hintStyle: Theme.of(context).textTheme.bodyText1,
+                    label: Text("Namba ya simu",
+                    style: Theme.of(context).textTheme.bodyText1,),
                     filled: true,
                   ),
                   keyboardType: TextInputType.phone,
@@ -118,7 +124,10 @@ class _SignUpState extends State<SignUp> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text("Jisajili"),
+                    child: const Text("Jisajili",
+                    style: TextStyle(
+                      fontFamily: 'Ubuntu'
+                    ),),
                     style: raisedButtonStyle,
                   ),
                 )
