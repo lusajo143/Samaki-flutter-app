@@ -20,12 +20,15 @@ class _SignInState extends State<SignIn> {
       key: _scaffoldState,
       appBar: AppBar(
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            _scaffoldState.currentState!.openDrawer();
-          },
-          icon: const Icon(Icons.menu),
-          color: textColor,
+        leading: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+          child: IconButton(
+            onPressed: () {
+              _scaffoldState.currentState!.openDrawer();
+            },
+            icon: const Icon(Icons.menu),
+            color: textColor,
+          ),
         ),
       ),
       body: home1(
