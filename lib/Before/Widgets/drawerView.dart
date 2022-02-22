@@ -17,28 +17,24 @@ class _drawerViewState extends State<drawerView> {
         SizedBox(
           width: double.infinity,
           height: 200,
-          child: Container(
-            alignment: Alignment.bottomLeft,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.green,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  offset: const Offset(2,10),
-                  spreadRadius: 5,
-                  blurRadius: 1
-                )
-              ]
-            ),
-            child: Container(
-              child: const Text("Samaki app",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                ),),
-              padding: EdgeInsets.all(20),
-            )
+          child: Stack(
+            children: [
+              const Image(image: NetworkImage("https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"),
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,),
+              Container(
+                alignment: Alignment.bottomLeft,
+                child: const Text("Samaki app",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    color: Colors.white,
+                    fontFamily: 'Ubuntu'
+                  ),),
+                padding: EdgeInsets.all(20),
+              )
+            ],
           ),
         ),
         Expanded(
@@ -51,7 +47,9 @@ class _drawerViewState extends State<drawerView> {
                       leading: Icon(Icons.home, color: Colors.black,size: 30,),
                       title: Text("Nyumbani",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Ubuntu',
+                        fontSize: 15
                       ),),
                       dense: true,
                     ),
@@ -67,7 +65,9 @@ class _drawerViewState extends State<drawerView> {
                       child: ListTile(
                         leading: SvgPicture.asset("assets/add.svg", semanticsLabel: "account", color: const Color.fromRGBO(
                             83, 83, 83, 1.0),),
-                        title: const Text("Jisajili",),
+                        title: Text("Jisajili",
+                        style: Theme.of(context).textTheme.bodyText1
+                        ),
                         dense: true,
                       ),
                     ),
@@ -81,7 +81,9 @@ class _drawerViewState extends State<drawerView> {
                       child: ListTile(
                         leading: SvgPicture.asset("assets/signin.svg", semanticsLabel: "signin", color: const Color.fromRGBO(
                             83, 83, 83, 1.0),),
-                        title: const Text("Ingia"),
+                        title: Text("Ingia",
+                            style: Theme.of(context).textTheme.bodyText1
+                        ),
                         dense: true,
                       ),
                     ),

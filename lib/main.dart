@@ -30,6 +30,12 @@ class MyApp extends StatelessWidget {
           color: textColor,
           fontWeight: FontWeight.normal,
           fontSize: 15
+        ),
+        bodyText1: TextStyle(
+          color: textColor,
+          fontWeight: FontWeight.normal,
+            fontFamily: 'Ubuntu',
+          fontSize: 15
         )
       )),
       home: const Splash(),
