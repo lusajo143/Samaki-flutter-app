@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:samaki_app/Before/Widgets/HorizontalView.dart';
 import 'package:samaki_app/Before/Widgets/drawerView.dart';
+import 'package:samaki_app/Before/constacts.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -17,6 +18,16 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldState,
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            _scaffoldState.currentState!.openDrawer();
+          },
+          icon: const Icon(Icons.menu),
+          color: textColor,
+        ),
+      ),
       body: home1(
         scaffoldKey: _scaffoldState,
       ),
@@ -36,51 +47,49 @@ class home1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(30, 60, 30, 0),
+      padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
       child: Column(
         children: [
           Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Material(
-                  child: InkWell(
-                    child: const Image(image: AssetImage("assets/Menu.png")),
-                    onTap: () {
-                      scaffoldKey.currentState!.openDrawer();
-                    },
-                  ),
-                ),
-                const Text(
-                  "Samaki App",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35,
-                  fontFamily: 'Ubuntu'),
-                )
-              ],
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Welcome",
+              style: Theme.of(context).textTheme.bodyText2
             ),
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
           ),
-          const TextField(
-            decoration: InputDecoration(
-                isDense: true,
-                contentPadding: EdgeInsets.fromLTRB(20, 10, 10, 20),
-                hintText: "Tafuta",
-                focusColor: Color.fromRGBO(238, 238, 238, 100),
-                hintStyle: TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.grey),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromRGBO(238, 238, 238, 100),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromRGBO(0, 0, 0, 100),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                fillColor: Color.fromRGBO(238, 238, 238, 100),
-                filled: true),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Samaki App",
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
           ),
+
+          Container(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  offset: Offset(2,2),
+                  blurRadius: 10
+                )
+              ]
+            ),
+            child: const TextField(
+                decoration: InputDecoration(
+                  hintText: "Tafuta",
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                ),
+            ),
+          ),
+
           Container(
             margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
             alignment: Alignment.centerLeft,

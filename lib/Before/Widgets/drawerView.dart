@@ -32,7 +32,7 @@ class _drawerViewState extends State<drawerView> {
               ]
             ),
             child: Container(
-              child: Text("Samaki app",
+              child: const Text("Samaki app",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
