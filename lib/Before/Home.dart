@@ -57,7 +57,7 @@ class home1 extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
             alignment: Alignment.centerLeft,
             child: Text(
-              "Welcome",
+              "Karibu,",
               style: Theme.of(context).textTheme.bodyText2
             ),
           ),

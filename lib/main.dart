@@ -36,8 +36,14 @@ class MyApp extends StatelessWidget {
           color: textColor,
           fontWeight: FontWeight.normal,
             fontFamily: 'Ubuntu',
-          fontSize: 15
-        )
+          fontSize: 15,
+          height: 1.4
+        ),
+        subtitle1: TextStyle(
+          color: textColor,
+          fontFamily: 'Ubuntu',
+          fontSize: 20
+        ),
       )),
       home: const Splash(),
     );

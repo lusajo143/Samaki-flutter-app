@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:samaki_app/Before/Validate.dart';
+
+import 'constacts.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -10,7 +13,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.white,
-    textStyle: TextStyle(fontWeight: FontWeight.bold),
+    textStyle: const TextStyle(fontWeight: FontWeight.bold),
     primary: const Color.fromRGBO(134, 134, 134, 1),
     fixedSize: const Size(double.infinity, 45),
     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -19,39 +22,35 @@ class _SignUpState extends State<SignUp> {
     ),
   );
 
+  final phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        elevation: 1,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back_ios,
+            color: textColor,),
+        ),
+
+        title: Text("Nyuma",
+            style: Theme.of(context).textTheme.subtitle1),
+
+      ),
       body: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(30, 40, 30, 10),
-            decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                  color: Colors.black12, offset: Offset(0, 2), blurRadius: 5)
-            ]),
-            child: Row(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.black,
-                    )),
-                Container(
-                  child: const Text(
-                    "Back",
-                    style: TextStyle(fontSize: 20, color: Colors.black,
-                    fontFamily: 'Ubuntu'),
-                  ),
-                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                )
-              ],
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
             child: Column(
@@ -116,14 +115,19 @@ class _SignUpState extends State<SignUp> {
                     filled: true,
                   ),
                   keyboardType: TextInputType.phone,
+                  controller: phoneController,
                 ),
                 const SizedBox(
                   height: 25,
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Validate(phone: phoneController.text,))
+                      );
+                    },
                     child: const Text("Jisajili",
                     style: TextStyle(
                       fontFamily: 'Ubuntu'
