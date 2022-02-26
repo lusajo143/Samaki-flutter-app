@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:samaki_app/After/Home.dart';
 import 'package:samaki_app/Before/constacts.dart';
 
 class Validate extends StatefulWidget {
@@ -93,7 +94,13 @@ class _ValidateState extends State<Validate> {
             ),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () {},
+              child: ElevatedButton(onPressed: () {
+                
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => Home(phone: widget.phone))
+                );
+                
+              },
                 child: const Text("Hakiki",
                   style: TextStyle(
                       color: Colors.white,
