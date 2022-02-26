@@ -14,6 +14,13 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -60,6 +60,7 @@ class _drawerViewState extends State<drawerView> {
                   children: [
                     InkWell(
                       onTap: () {
+                        Navigator.of(context).pop();
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
                       },
                       child: ListTile(
