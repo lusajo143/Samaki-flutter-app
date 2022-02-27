@@ -174,6 +174,9 @@ class _SignInState extends State<SignIn> {
         MaterialPageRoute(builder: (context) => Validate(phone: phone))
       );
     } else {
+      setState(() {
+        isLoading = false;
+      });
       showDialog(context: context, builder: (context) {
         return errorServer(context);
       });
