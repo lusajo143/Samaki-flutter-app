@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:samaki_app/Before/constacts.dart';
 
 class HorizontalView extends StatefulWidget {
-  final post;
+  final article art;
 
-  const HorizontalView({Key? key, this.post}) : super(key: key);
+  const HorizontalView({Key? key, required this.art}) : super(key: key);
 
   @override
   _HorizontalViewState createState() => _HorizontalViewState();
@@ -22,7 +23,7 @@ class _HorizontalViewState extends State<HorizontalView> {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image(
-                image: NetworkImage(widget.post.image),
+                image: NetworkImage(widget.art.image),
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
@@ -35,12 +36,15 @@ class _HorizontalViewState extends State<HorizontalView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.post.title,
+                      widget.art.title,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
+                          fontWeight: FontWeight.bold, fontSize: 18,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      widget.post.content,
+                      widget.art.desc,
                       maxLines: 5,
                       textAlign: TextAlign.justify,
                       overflow: TextOverflow.ellipsis,
@@ -53,7 +57,7 @@ class _HorizontalViewState extends State<HorizontalView> {
                         Container(
                           margin: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                           child: Text(
-                            widget.post.time,
+                            widget.art.time.toString(),
                             style: const TextStyle(
                                 fontSize: 12,
                                 color: Color.fromRGBO(134, 134, 134, 100)

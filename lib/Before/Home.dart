@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:samaki_app/After/Home.dart';
 import 'package:samaki_app/Before/Widgets/HorizontalView.dart';
 import 'package:samaki_app/Before/Widgets/drawerView.dart';
 import 'package:samaki_app/Before/constacts.dart';
+import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -112,20 +114,34 @@ class home1 extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: _list.length,
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                itemBuilder: (context, index) {
-                  return HorizontalView(
-                      post: post(
-                          "https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
-                          "title",
-                          "Lorem ipsum dolor sit amet, ullum mundi qui an. Doctus labitur iuvaret eu per. Nam cu porro paulo. Duis porro utamur in ...",
-                          "time"));
-                }),
+            child: FutureBuilder<List<article>>(
+              future: getNewArticles(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                      itemBuilder: (context, index) {
+                        return HorizontalView(
+                            art: article(
+                                snapshot.data![index].title,
+                                snapshot.data![index].desc,
+                                snapshot.data![index].image,
+                                snapshot.data![index].id,
+                              snapshot.data![index].time,
+                            ));
+                      });
+                } else if (snapshot.hasError){
+                  return Text('${snapshot.error}');
+                }
+
+                return const LoadingPostsList();
+              },
+            ),
           )
         ],
       ),
     );
   }
+
 }

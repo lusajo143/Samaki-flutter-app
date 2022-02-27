@@ -6,6 +6,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use(express.static('public'))
+
 
 const con = mysql.createConnection({
     host: 'localhost',
@@ -31,6 +33,28 @@ app.post('/sign-up', (req, res) => {
             })
         }
     })
+})
+
+app.get('/get_articles', (req, res) => {
+    
+    con.query('select * from articles limit 1', (err, rows, fields) => {
+        if (err) throw new Error(err)
+
+        let articles = []
+
+        rows.forEach(article => {
+            articles.push({
+                id: article.id,
+                title: article.title,
+                description: article.description,
+                time: article.time,
+                image: article.image
+            })
+        });
+
+        res.status(200).json(articles).end()
+    })
+
 })
 
 

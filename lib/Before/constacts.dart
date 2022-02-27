@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 const textColor = Color(0xFF151026);
 const primaryColor = Color(0xFFFAFAFA);
+const whiteFade = Color(0xFFEBEBEB);
 
 const String baseUrl = "http://10.42.0.1:5000/";
 
@@ -90,4 +91,23 @@ class errorMessage {
   factory errorMessage.toJson(Map<String, dynamic> json) {
     return errorMessage(message: json['message']);
   }
+}
+
+
+class article {
+  final String title, desc, image;
+  final int id, time;
+
+  article(this.title, this.desc, this.image, this.id, this.time);
+
+  factory article.toJson(Map<String, dynamic> json) {
+    return article(
+      json['title'],
+      json['desc'],
+      json['image'],
+      json['id'],
+      json['time']
+    );
+  }
+
 }

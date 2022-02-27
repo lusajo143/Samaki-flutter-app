@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:samaki_app/After/Widgets/drawerView.dart';
 import 'package:samaki_app/Before/Widgets/HorizontalView.dart';
 import 'package:samaki_app/Before/constacts.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
 
 class Home extends StatefulWidget {
   final String phone;
@@ -94,21 +99,65 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: _list.length,
-                  itemBuilder: (context, index) {
-                    return HorizontalView(
-                      post: post(
-                          "https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
-                          "title",
-                          "Lorem ipsum dolor sit amet, ullum mundi qui an. Doctus labitur iuvaret eu per. Nam cu porro paulo. Duis porro utamur in ...",
-                          "time"),
-                    );
+                child: FutureBuilder<List<article>>(
+                  future: getNewArticles(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return HorizontalView(
+                                art: article(
+                                  snapshot.data![index].title,
+                                  snapshot.data![index].desc,
+                                  snapshot.data![index].image,
+                                  snapshot.data![index].id,
+                                  snapshot.data![index].time,
+                                ));
+                          });
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+
+                    return const LoadingPostsList();
                   },
                 ),
+                // ),
               )
             ],
           ),
         ));
+  }
+
+
+
+
+}
+
+Future<List<article>> getNewArticles() async {
+  final response = await http.get(
+      Uri.parse(baseUrl+"get_articles")
+  );
+
+  if (response.statusCode == 200) {
+
+    var data = jsonDecode(response.body);
+    List<article> articles = [];
+
+    for (var singleArticle in data) {
+      article Article = article(
+        singleArticle['title'],
+        singleArticle['description'],
+        singleArticle['image'],
+        singleArticle['id'],
+        singleArticle['time']
+      );
+
+      articles.add(Article);
+    }
+
+    return articles;
+  } else {
+    throw Exception("Error");
   }
 }
