@@ -37,6 +37,8 @@ app.post('/sign-up', (req, res) => {
 
 app.get('/get_articles', (req, res) => {
     
+    console.log("hit get articles\n");
+
     con.query('select * from articles limit 1', (err, rows, fields) => {
         if (err) throw new Error(err)
 
@@ -53,6 +55,21 @@ app.get('/get_articles', (req, res) => {
         });
 
         res.status(200).json(articles).end()
+    })
+
+})
+
+
+app.post('/sign-in', (req, res) => {
+
+    console.log("Hit sign in");
+    let phone = req.body.phone
+
+    con.query('select * from users where phone=?', [phone], (err, rows, fields) => {
+        if (err) throw new Error(err)
+        
+        rows.length != 0 ? res.status(200).json({ id: rows[0].id }) : res.status(500).json({ message: phone + ' is not registered.'})
+
     })
 
 })

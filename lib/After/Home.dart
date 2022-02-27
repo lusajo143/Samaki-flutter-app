@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:samaki_app/After/Widgets/drawerView.dart';
-import 'package:samaki_app/Before/Widgets/HorizontalView.dart';
+import 'package:samaki_app/Utils/Widgets/HorizontalView.dart';
 import 'package:samaki_app/Before/constacts.dart';
 
 import 'package:http/http.dart' as http;

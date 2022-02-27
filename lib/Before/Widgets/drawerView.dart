@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:samaki_app/Before/SignIn.dart';
 import 'package:samaki_app/Before/SignUp.dart';
 
 class drawerView extends StatefulWidget {
@@ -78,7 +79,11 @@ class _drawerViewState extends State<drawerView> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const SignIn())
+                        );
+                      },
                       child: ListTile(
                         leading: SvgPicture.asset("assets/signin.svg", semanticsLabel: "signin", color: const Color.fromRGBO(
                             83, 83, 83, 1.0),),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:samaki_app/After/Home.dart';
-import 'package:samaki_app/Before/Widgets/HorizontalView.dart';
+import 'package:samaki_app/Utils/Widgets/HorizontalView.dart';
 import 'package:samaki_app/Before/Widgets/drawerView.dart';
 import 'package:samaki_app/Before/constacts.dart';
 import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';

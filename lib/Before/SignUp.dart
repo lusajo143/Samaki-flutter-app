@@ -59,7 +59,7 @@ class _SignUpState extends State<SignUp> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+            padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
             child: Form(
               key: _key,
               child: Column(
@@ -191,7 +191,7 @@ class _SignUpState extends State<SignUp> {
                                   height: 20,
                                   margin: const EdgeInsets.only(right: 10),
                                   child: const CircularProgressIndicator(
-                                    color: textColor,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 const Text(
