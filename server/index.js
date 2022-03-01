@@ -22,24 +22,28 @@ app.post('/sign-up', (req, res) => {
     let name = req.body.name
     let phone = req.body.phone
 
-    con.query("select * from users where phone=?", [phone], (Err, Rows, Fields) => {
-        if (Err) throw new Error(Err)
-        if (Rows.length != 0) {
-            res.status(500).json({ message: 'Namba ya simu '+phone+' imekwisha tumika.' }).end()
-        } else {
-            con.query('insert into users values (null, ?, ?);', [name, phone], (err, rows, fields) => {
-                if (err) throw new Error(err)
-                res.json({ status: 200 })
-            })
-        }
-    })
-})
+    if (name != "" && phone == "") {
+        con.query("select * from users where phone=?", [phone], (Err, Rows, Fields) => {
+            if (Err) throw new Error(Err)
+            if (Rows.length != 0) {
+                res.status(500).json({ message: 'Namba ya simu '+phone+' imekwisha tumika.' }).end()
+            } else {
+                con.query('insert into users values (null, ?, ?);', [name, phone], (err, rows, fields) => {
+                    if (err) throw new Error(err)
+                    res.json({ status: 200 })
+                })
+            }
+        })
+    } else {
+        res.status(500).json({ message: 'Jina na namba ya simu vinahitajika.'}).end()
+    }
+ })
 
 app.get('/get_articles', (req, res) => {
     
     console.log("hit get articles\n");
 
-    con.query('select * from articles limit 1', (err, rows, fields) => {
+    con.query('select * from articles limit 6', (err, rows, fields) => {
         if (err) throw new Error(err)
 
         let articles = []
@@ -56,7 +60,7 @@ app.get('/get_articles', (req, res) => {
 
         res.status(200).json(articles).end()
     })
-
+ 
 })
 
 

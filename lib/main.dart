@@ -26,6 +26,12 @@ class MyApp extends StatelessWidget {
           fontSize: 35,
           fontFamily: 'Ubuntu'
         ),
+        headline2: TextStyle(
+          color: textColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+          fontFamily: 'Ubuntu'
+        ),
         bodyText2: TextStyle(
           color: textColor,
           fontWeight: FontWeight.normal,

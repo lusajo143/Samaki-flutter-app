@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:samaki_app/Before/constacts.dart';
+import 'package:samaki_app/Utils/Widgets/ArticleDetails.dart';
 
 class HorizontalView extends StatefulWidget {
   final article art;
@@ -16,7 +17,11 @@ class _HorizontalViewState extends State<HorizontalView> {
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ArticleDetails(id: widget.art.id))
+          );
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
