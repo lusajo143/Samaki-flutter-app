@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:samaki_app/Before/constacts.dart';
 import 'package:samaki_app/Utils/Widgets/ArticleDetails.dart';
+import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
 
 class HorizontalView extends StatefulWidget {
   final article art;
@@ -32,6 +33,27 @@ class _HorizontalViewState extends State<HorizontalView> {
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loading) {
+                  if (loading == null) return child;
+                  return SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: Stack(
+                      children: const [
+                        shadowView(width: 100, height: 100),
+                        Center(
+                          child: SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              color: textColor,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
             Expanded(

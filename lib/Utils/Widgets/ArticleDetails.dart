@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:samaki_app/Before/constacts.dart';
 import 'package:samaki_app/Utils/Widgets/LoadingArticleDetails.dart';
+import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
 
 
 class ArticleDetails extends StatefulWidget {
@@ -91,7 +92,24 @@ class _DetailedArticleState extends State<DetailedArticle> {
             const SizedBox(height: 10,),
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: Image.network("http://10.42.0.1:5000/images/cover.jpg",),
+              child: Image.network("http://10.42.0.1:5000/images/cover.jpg",
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return SizedBox(
+                  width: double.infinity,
+                  height: 400,
+                  child: Stack(
+                    children: const [
+                      shadowView(width: double.infinity, height: 400),
+                      Center(
+                        child: CircularProgressIndicator(
+                          color: textColor,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),
@@ -104,7 +122,7 @@ class _DetailedArticleState extends State<DetailedArticle> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 20, bottom: 20),
+              padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: Column(
                 children: [
                   Text(
