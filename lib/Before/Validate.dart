@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:samaki_app/After/Home.dart';
+import 'package:samaki_app/Before/Home.dart';
 import 'package:samaki_app/Before/constacts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Validate extends StatefulWidget {
   final String phone;
@@ -94,10 +96,14 @@ class _ValidateState extends State<Validate> {
             ),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(onPressed: () {
+              child: ElevatedButton(onPressed: () async {
+                
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setString("phone", widget.phone);
+                // prefs.setString("key", value)
                 
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Home(phone: widget.phone))
+                  MaterialPageRoute(builder: (context) => const Home())
                 );
                 
               },

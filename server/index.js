@@ -22,7 +22,7 @@ app.post('/sign-up', (req, res) => {
     let name = req.body.name
     let phone = req.body.phone
 
-    if (name != "" && phone == "") {
+    if (name != "" && phone != "") {
         con.query("select * from users where phone=?", [phone], (Err, Rows, Fields) => {
             if (Err) throw new Error(Err)
             if (Rows.length != 0) {
@@ -49,10 +49,12 @@ app.get('/get_articles', (req, res) => {
         let articles = []
 
         rows.forEach(article => {
+            var description = article.description
+
             articles.push({
                 id: article.id,
                 title: article.title,
-                description: article.description,
+                description: description.substr(0, parseInt(description.length/3))+'...',
                 time: article.time,
                 image: article.image
             })
@@ -61,6 +63,51 @@ app.get('/get_articles', (req, res) => {
         res.status(200).json(articles).end()
     })
  
+})
+
+
+app.post('/get_articles_details', (req, res) => {
+    let user_id = req.body.user_id
+    let article_id = req.body.article_id
+
+    con.query('select * from paid_articles where user_id=? and article_id=?', [user_id, article_id],
+        (err, Rows, fields) => {
+            if (err) throw new Error(err)
+
+            if (Rows.length != 0) {
+                con.query('select * from articles where id=?', [article_id], 
+                (err, rows, fields) => {
+                    if (err) throw new Error(err)
+
+                    article = {
+                        id: rows[0].id,
+                        title: rows[0].title,
+                        desc: rows[0].description,
+                        time: rows[0].time,
+                        image: rows[0].image,
+                        paid: true
+                    }
+    
+                    res.status(200).json(article).end()
+                })
+            } else {
+                con.query('select * from articles where id=?', [article_id], 
+                (err, rows, fields) => {
+                    if (err) throw new Error(err)
+                    let description = rows[0].description
+                    article = {
+                        id: rows[0].id,
+                        title: rows[0].title,
+                        desc: description.substr(0, parseInt(description.length/3))+'...',
+                        time: rows[0].time,
+                        image: rows[0].image,
+                        paid: false
+                    }
+    
+                    res.status(200).json(article).end()
+                })
+            }
+        })
 })
 
 

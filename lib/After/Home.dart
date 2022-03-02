@@ -9,8 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
 
 class Home extends StatefulWidget {
-  final String phone;
-  const Home({Key? key, required this.phone}) : super(key: key);
+  const Home({Key? key,}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();

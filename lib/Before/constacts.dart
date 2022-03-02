@@ -111,3 +111,23 @@ class article {
   }
 
 }
+
+class article2 {
+  final String title, desc, image;
+  final int id, time;
+  final bool paid;
+
+  article2(this.title, this.desc, this.image, this.id, this.time, this.paid);
+
+  factory article2.toJson(Map<String, dynamic> json) {
+    return article2(
+        json['title'],
+        json['desc'],
+        json['image'],
+        json['id'],
+        json['time'],
+      json['paid']
+    );
+  }
+
+}

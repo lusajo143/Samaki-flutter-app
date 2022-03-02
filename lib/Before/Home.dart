@@ -30,7 +30,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+          padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
           child: IconButton(
             onPressed: () {
               _scaffoldState.currentState!.openDrawer();
@@ -54,12 +54,11 @@ class home1 extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   home1({Key? key, required this.scaffoldKey}) : super(key: key);
 
-  var _list = ["hello", "h"];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
       child: Column(
         children: [
           Container(

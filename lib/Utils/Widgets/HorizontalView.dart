@@ -20,7 +20,7 @@ class _HorizontalViewState extends State<HorizontalView> {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ArticleDetails(id: widget.art.id))
+            MaterialPageRoute(builder: (context) => ArticleDetails(articleId: widget.art.id))
           );
         },
         child: Row(
