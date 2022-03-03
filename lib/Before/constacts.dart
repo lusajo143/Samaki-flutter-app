@@ -6,7 +6,7 @@ const textColor = Color(0xFF151026);
 const primaryColor = Color(0xFFFAFAFA);
 const whiteFade = Color(0xFFEBEBEB);
 
-const String baseUrl = "http://10.42.0.1:5000/";
+const String baseUrl = "http://172.17.17.42:5000/";
 
 AlertDialog errorAlert(BuildContext context, String message) {
   return AlertDialog(

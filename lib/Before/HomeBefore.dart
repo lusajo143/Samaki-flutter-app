@@ -41,7 +41,7 @@ class _HomeBeforeState extends State<HomeBefore> {
         ),
       ),
       body: home1(
-        scaffoldKey: _scaffoldState,
+        scaffoldKey: _scaffoldState
       ),
       drawer: const Drawer(
         child: drawerView(),
@@ -50,10 +50,31 @@ class _HomeBeforeState extends State<HomeBefore> {
   }
 }
 
-class home1 extends StatelessWidget {
+class home1 extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
-  home1({Key? key, required this.scaffoldKey}) : super(key: key);
+  home1({Key? key, required this.scaffoldKey})
+      : super(key: key);
 
+  @override
+  _home1State createState() => _home1State();
+}
+
+class _home1State extends State<home1> {
+
+  final ScrollController _scrollController = ScrollController();
+  double? height;
+
+
+  @override
+  void initState() {
+
+    super.initState();
+    _scrollController.addListener(() {
+      setState(() {
+        height = _scrollController.offset > 0 ? 0 : 100;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,49 +82,57 @@ class home1 extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
       child: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            height: height,
             alignment: Alignment.centerLeft,
-            child: Text(
-              "Karibu,",
-              style: Theme.of(context).textTheme.bodyText2
+            child: FittedBox(
+              alignment: Alignment.centerLeft,
+              fit: BoxFit.fill,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    alignment: Alignment.centerLeft,
+                    child: Text("Karibu,",
+                        style: Theme.of(context).textTheme.bodyText2),
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Samaki App",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  )
+                ],
+              ),
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Samaki App",
-              style: Theme.of(context).textTheme.headline1,
-            ),
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-          ),
-
           Container(
             padding: const EdgeInsets.only(left: 15, right: 15),
             alignment: Alignment.center,
             decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(25)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  offset: Offset(2,2),
-                  blurRadius: 10
-                )
-              ]
-            ),
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12,
+                      offset: Offset(2, 2),
+                      blurRadius: 10)
+                ]),
             child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Tafuta",
-                  hintStyle: Theme.of(context).textTheme.bodyText1,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
+              decoration: InputDecoration(
+                hintText: "Tafuta",
+                hintStyle: Theme.of(context).textTheme.bodyText1,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+              ),
             ),
           ),
-
           Container(
-            margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 30, 0, 10),
             alignment: Alignment.centerLeft,
             child: const Text(
               "Mpya",
@@ -119,6 +148,7 @@ class home1 extends StatelessWidget {
                 if (snapshot.hasData) {
                   return ListView.builder(
                       itemCount: snapshot.data!.length,
+                      controller: _scrollController,
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                       itemBuilder: (context, index) {
                         return HorizontalView(
@@ -130,7 +160,7 @@ class home1 extends StatelessWidget {
                               snapshot.data![index].time,
                             ));
                       });
-                } else if (snapshot.hasError){
+                } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
 

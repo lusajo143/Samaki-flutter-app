@@ -22,6 +22,32 @@ class _ArticleDetailsState extends State<ArticleDetails> {
 
   @override
   Widget build(BuildContext context) {
+    return BodyArticle(articleId: widget.articleId);
+    // return TweenAnimationBuilder(
+    //   tween: Tween(begin: 0.0, end: 1.0),
+    //   duration: const Duration(milliseconds: 1000),
+    //   child: BodyArticle(articleId: widget.articleId,),
+    //   builder: (context, double _value, child) {
+    //     return Opacity(opacity: _value, child: child,);
+    //   },
+    // );
+  }
+
+
+}
+
+class BodyArticle extends StatefulWidget {
+  final int articleId;
+
+  const BodyArticle({Key? key, required this.articleId}) : super(key: key);
+
+  @override
+  _BodyArticleState createState() => _BodyArticleState();
+}
+
+class _BodyArticleState extends State<BodyArticle> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -60,6 +86,8 @@ class _ArticleDetailsState extends State<ArticleDetails> {
     );
   }
 
+
+
   Future<article2> getArticleDetails(
       BuildContext context, int userId, int articleId) async {
     http.Response response = await http.post(
@@ -83,9 +111,8 @@ class _ArticleDetailsState extends State<ArticleDetails> {
       throw Exception("Server error");
     }
   }
-
-
 }
+
 
 class DetailedArticle extends StatefulWidget {
   final String title, desc, image, id, time;
@@ -146,27 +173,30 @@ class _DetailedArticleState extends State<DetailedArticle> {
             ),
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: Image.network(
-                widget.image,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return SizedBox(
-                    width: double.infinity,
-                    height: 400,
-                    child: Stack(
-                      children: const [
-                        shadowView(width: double.infinity, height: 400),
-                        Center(
-                          child: CircularProgressIndicator(
-                            color: textColor,
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                },
+              child: Hero(
+                tag: 'image_${widget.id}',
+                child: Image.network(
+                  widget.image,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return SizedBox(
+                      width: double.infinity,
+                      height: 400,
+                      child: Stack(
+                        children: const [
+                          shadowView(width: double.infinity, height: 400),
+                          Center(
+                            child: CircularProgressIndicator(
+                              color: textColor,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             !widget.paid ?

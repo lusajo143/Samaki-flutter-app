@@ -36,7 +36,7 @@ class _HorizontalViewState extends State<HorizontalView> {
             },
             child: AnimatedContainer(
               margin: const EdgeInsets.only(top: 5),
-              duration: const Duration(milliseconds: 100),
+              duration: const Duration(milliseconds: 500),
               width: size,
               height: size,
               child: ClipRRect(

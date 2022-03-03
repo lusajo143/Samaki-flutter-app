@@ -46,13 +46,45 @@ app.get('/get_articles', (req, res) => {
 
     console.log("hit get articles\n");
 
-    con.query('select * from articles limit 6', (err, rows, fields) => {
+    con.query('select * from articles limit 5', (err, rows, fields) => {
         if (err) throw new Error(err)
 
         let articles = []
 
         rows.forEach(article => {
             var description = article.description
+
+            articles.push({
+                id: article.id,
+                title: article.title,
+                description: description.substr(0, parseInt(description.length / 3)) + '...',
+                time: article.time,
+                image: article.image,
+                paid: false
+            })
+        });
+
+        res.status(200).json(articles).end()
+    })
+
+})
+
+
+app.post('/get_articles2', (req, res) => {
+
+    console.log("hit get articles\n");
+
+    let user_id = req.body.id
+
+    con.query('select * from articles limit 5', (err, rows, fields) => {
+        if (err) throw new Error(err)
+
+        let articles = []
+
+        rows.forEach(article => {
+            var description = article.description
+
+            // con.query
 
             articles.push({
                 id: article.id,
