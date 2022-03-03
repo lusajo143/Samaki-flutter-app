@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:samaki_app/After/Home.dart';
-import 'package:samaki_app/Before/Home.dart';
+import 'package:samaki_app/Before/HomeBefore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splash extends StatefulWidget {
@@ -13,7 +13,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  String? _id;
+  int _id = 0;
 
   @override
   void initState() {
@@ -25,18 +25,18 @@ class _SplashState extends State<Splash> {
 
   void _checkSignIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (!prefs.getString("id")!.isEmpty) {
-      _id = prefs.getString("id");
-    } else {
-      _id = "null";
+    if (prefs.getInt("id") != 0) {
+      setState(() {
+        _id = prefs.getInt("id")!;
+      });
     }
   }
 
   void startTimer() {
     Timer(const Duration(seconds: 2), () {
-      _id == "null"
+      _id == 0
           ? Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const SignIn()))
+              context, MaterialPageRoute(builder: (context) => const HomeBefore()))
           : Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => const Home()));
     });

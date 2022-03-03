@@ -227,13 +227,28 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         isLoading = false;
       });
+      var responseJson = responseSignUp.fromJson(jsonDecode(response.body));
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Validate(phone: phone)));
+          MaterialPageRoute(builder: (context) => Validate(phone: phoneController.text, id: responseJson.id, name: nameController.text,)));
     } else {
       setState(() {
         isLoading = false;
       });
       showDialog(context: context, builder: (context) => errorAlert(context, errorMessage.toJson(jsonDecode(response.body)).message));
     }
+  }
+}
+
+class responseSignUp {
+  final String phone;
+  final int id;
+
+  responseSignUp(this.phone, this.id);
+
+  factory responseSignUp.fromJson(Map <String, dynamic> json) {
+    return responseSignUp(
+      json["phone"],
+      json["id"]
+    );
   }
 }

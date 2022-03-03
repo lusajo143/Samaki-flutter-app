@@ -7,6 +7,7 @@ import 'package:samaki_app/Before/constacts.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key,}) : super(key: key);
@@ -16,10 +17,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const _list = ["h", "k"];
 
   final _key = GlobalKey<ScaffoldState>();
 
+  String? _name = "null";
+
+
+  @override
+  void initState() {
+    super.initState();
+    _getName();
+  }
+
+  void _getName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _name = prefs.getString("name");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +76,7 @@ class _HomeState extends State<Home> {
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Jon Doe",
+                  _name!,
                   style: Theme.of(context).textTheme.headline1,
                 ),
                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 30),
@@ -117,7 +132,6 @@ class _HomeState extends State<Home> {
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     }
-
                     return const LoadingPostsList();
                   },
                 ),

@@ -30,7 +30,10 @@ app.post('/sign-up', (req, res) => {
             } else {
                 con.query('insert into users values (null, ?, ?);', [name, phone], (err, rows, fields) => {
                     if (err) throw new Error(err)
-                    res.json({ status: 200 })
+                    con.query('select * from users where phone=?', [phone], (Err, Rows, Fields) => {
+                        if (Err) throw new Error(Err)
+                        res.json({ status: 200, id: Rows[0].id })
+                    })
                 })
             }
         })
@@ -119,7 +122,7 @@ app.post('/sign-in', (req, res) => {
     con.query('select * from users where phone=?', [phone], (err, rows, fields) => {
         if (err) throw new Error(err)
         
-        rows.length != 0 ? res.status(200).json({ id: rows[0].id }) : res.status(500).json({ message: phone + ' is not registered.'})
+        rows.length != 0 ? res.status(200).json({ id: rows[0].id, name: rows[0].name }) : res.status(500).json({ message: phone + ' is not registered.'})
 
     })
 

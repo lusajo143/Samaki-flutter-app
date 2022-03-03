@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:samaki_app/After/Paid.dart';
 import 'package:samaki_app/Before/SignUp.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:samaki_app/Before/HomeBefore.dart';
 
 class drawerView extends StatefulWidget {
   const drawerView({Key? key}) : super(key: key);
@@ -78,7 +81,7 @@ class _drawerViewState extends State<drawerView> {
                         dense: true,
                       ),
                     ),
-                    Divider()
+                    const Divider()
                   ],
                 ),
                 Column(
@@ -97,13 +100,20 @@ class _drawerViewState extends State<drawerView> {
                         dense: true,
                       ),
                     ),
-                    Divider()
+                    const Divider()
                   ],
                 ),
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        prefs.remove("id");
+                        prefs.remove("phone");
+                        prefs.remove("name");
+                        Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => const HomeBefore()));
+                      },
                       child: ListTile(
                         leading: const Icon(Icons.logout, color: Color.fromRGBO(
                             83, 83, 83, 1.0)
@@ -114,7 +124,7 @@ class _drawerViewState extends State<drawerView> {
                         dense: true,
                       ),
                     ),
-                    Divider()
+                    const Divider()
                   ],
                 )
               ],

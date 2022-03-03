@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:samaki_app/After/Home.dart';
-import 'package:samaki_app/Before/Home.dart';
+
 import 'package:samaki_app/Before/constacts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Validate extends StatefulWidget {
-  final String phone;
-  const Validate({Key? key, required this.phone}) : super(key: key);
+  final String phone, name;
+  final int id;
+  const Validate({Key? key, required this.phone, required this.id, required this.name}) : super(key: key);
 
   @override
   _ValidateState createState() => _ValidateState();
@@ -100,6 +101,8 @@ class _ValidateState extends State<Validate> {
                 
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 prefs.setString("phone", widget.phone);
+                prefs.setInt("id", widget.id);
+                prefs.setString("name", widget.name);
                 // prefs.setString("key", value)
                 
                 Navigator.of(context).pushReplacement(

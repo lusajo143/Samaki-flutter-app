@@ -170,8 +170,9 @@ class _SignInState extends State<SignIn> {
       setState(() {
         isLoading = false;
       });
+      var responseJson = jsonDecode(response.body);
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => Validate(phone: phone))
+        MaterialPageRoute(builder: (context) => Validate(phone: phone, id: responseJson["id"], name: responseJson["name"],))
       );
     } else {
       setState(() {
