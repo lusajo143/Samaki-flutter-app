@@ -57,9 +57,6 @@ class _ArticleDetailsState extends State<ArticleDetails> {
           return const LoadingArticleDetails();
         },
       ),
-      // body: !isLoading ?
-      // const LoadingArticleDetails() :
-      // const DetailedArticle(),
     );
   }
 
@@ -172,6 +169,7 @@ class _DetailedArticleState extends State<DetailedArticle> {
                 },
               ),
             ),
+            !widget.paid ?
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: Text(
@@ -181,8 +179,17 @@ class _DetailedArticleState extends State<DetailedArticle> {
                 textAlign: TextAlign.justify,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
+            ) :
+            Container(
+              padding: const EdgeInsets.only(bottom: 20),
+              margin: const EdgeInsets.only(top: 20),
+              child: Text(
+                widget.desc,
+                textAlign: TextAlign.justify,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
             ),
-            widget.paid ?
+            !widget.paid ?
             Container(
               padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: Column(
