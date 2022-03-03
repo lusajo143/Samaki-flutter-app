@@ -22,15 +22,15 @@ class _ArticleDetailsState extends State<ArticleDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return BodyArticle(articleId: widget.articleId);
-    // return TweenAnimationBuilder(
-    //   tween: Tween(begin: 0.0, end: 1.0),
-    //   duration: const Duration(milliseconds: 1000),
-    //   child: BodyArticle(articleId: widget.articleId,),
-    //   builder: (context, double _value, child) {
-    //     return Opacity(opacity: _value, child: child,);
-    //   },
-    // );
+    // return BodyArticle(articleId: widget.articleId);
+    return TweenAnimationBuilder(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: const Duration(milliseconds: 1000),
+      child: BodyArticle(articleId: widget.articleId,),
+      builder: (context, double _value, child) {
+        return Opacity(opacity: _value, child: child,);
+      },
+    );
   }
 
 

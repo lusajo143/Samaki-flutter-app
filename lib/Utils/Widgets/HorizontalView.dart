@@ -79,9 +79,11 @@ class _HorizontalViewState extends State<HorizontalView> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              ArticleDetails(articleId: widget.art.id)));
+                      Navigator.of(context).push(
+                        PageRouteBuilder(pageBuilder: (context, _, child) {
+                          return ArticleDetails(articleId: widget.art.id);
+                        }, opaque: false)
+                      );
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
