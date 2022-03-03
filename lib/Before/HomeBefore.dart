@@ -6,14 +6,14 @@ import 'package:samaki_app/Before/Widgets/drawerView.dart';
 import 'package:samaki_app/Before/constacts.dart';
 import 'package:samaki_app/Utils/Widgets/LoadingPostsList.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class HomeBefore extends StatefulWidget {
+  const HomeBefore({Key? key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _HomeBeforeState createState() => _HomeBeforeState();
 }
 
-class _SignInState extends State<SignIn> {
+class _HomeBeforeState extends State<HomeBefore> {
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
 
