@@ -116,7 +116,7 @@ class _SignUpState extends State<SignUp> {
                     controller: nameController,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter your name here!";
+                        return "Jaza jina lako hapa!";
                       } else {
                         return null;
                       }
@@ -156,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                     keyboardType: TextInputType.phone,
                     controller: phoneController,
                     validator: (value) {
-                      return value!.isEmpty ? "Enter phone number here" : null;
+                      return value!.isEmpty ? "Jaza namba yako ya simu hapa!" : null;
                     },
                   ),
                   const SizedBox(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:samaki_app/After/Account.dart';
+import 'package:samaki_app/After/Home.dart';
 import 'package:samaki_app/After/Paid.dart';
-import 'package:samaki_app/Before/SignUp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:samaki_app/Before/HomeBefore.dart';
@@ -36,7 +37,7 @@ class _drawerViewState extends State<drawerView> {
                       color: Colors.white,
                       fontFamily: 'Ubuntu'
                   ),),
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
               )
             ],
           ),
@@ -89,7 +90,7 @@ class _drawerViewState extends State<drawerView> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).pop();
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUp()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const Account()));
                       },
                       child: ListTile(
                         leading: const Icon(Icons.account_circle_outlined, color: Color.fromRGBO(

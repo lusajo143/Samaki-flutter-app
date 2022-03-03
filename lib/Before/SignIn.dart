@@ -96,7 +96,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Enter your phone number here";
+                      return "Jaza namba yako ya simu hapa!";
                     }
                     // else if (value.length < 10) {
                     //   return "Enter valid phone number";

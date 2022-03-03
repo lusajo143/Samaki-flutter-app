@@ -162,5 +162,19 @@ app.post('/sign-in', (req, res) => {
 
 })
 
+app.post('/updateName', (req, res) => {
+    let user_id = req.body.id
+    let newName = req.body.newName
+
+
+    con.query('update users set name=? where id=?', [newName, user_id], (err, rows, fields) => {
+        if (err) throw new Error(err)
+
+        res.status(200).json({})
+
+    })
+
+})
+
 
 app.listen(5000, () => console.log("Server is listening at 5000"))

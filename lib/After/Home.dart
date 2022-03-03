@@ -58,14 +58,6 @@ class _HomeState extends State<Home> {
             icon: const Icon(Icons.menu),
             color: textColor,
           ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.account_circle_outlined,
-                  color: textColor,
-                ))
-          ],
         ),
         drawer: const Drawer(
           child: drawerView(),

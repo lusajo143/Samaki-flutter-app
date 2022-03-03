@@ -58,7 +58,7 @@ class _PaidState extends State<Paid> {
                     );
                   }
 
-                  return const CircularProgressIndicator();
+                  return const LoadingPostsList();
                 },
               ),
             )
