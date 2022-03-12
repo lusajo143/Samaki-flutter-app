@@ -247,7 +247,7 @@ class responseSignUp {
 
   factory responseSignUp.fromJson(Map <String, dynamic> json) {
     return responseSignUp(
-      json["phone"],
+      json["phone"].toString(),
       json["id"]
     );
   }

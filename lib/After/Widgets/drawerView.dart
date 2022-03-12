@@ -24,7 +24,7 @@ class _drawerViewState extends State<drawerView> {
           height: 200,
           child: Stack(
             children: [
-              const Image(image: NetworkImage("https://images.unsplash.com/photo-1535591273668-578e31182c4f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max"),
+              Image.asset("assets/header.jpeg",
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: double.infinity,),
